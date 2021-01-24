@@ -3,7 +3,7 @@ import os
 
 client = discord.Client()
 
-banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ', 'u ', 'U ', 'ur ', 'Ur ', 'UR ', ' u', ' U', ' ur', ' Ur', ' UR',]
+banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
 
 all_Inputs = [
     " 'typo again?' -- Provide someone in need with a keybaord.",
@@ -37,7 +37,7 @@ async def on_message(message):
     if message.content.startswith('hey') or message.content.startswith('hello') or message.content.startswith('hi') or message.content.startswith('yo') or message.content.startswith('heyo') or message.content.startswith('Hello') or message.content.startswith('Hi') or message.content.startswith('Yo') or message.content.startswith('Heyo'):
         await message.channel.send('HELLO!')
     #hey mr arnab
-    if message.content.startswith('hey mr. arnab'):
+    if message.content.startswith('Get me a time magazine'):
         mrarnab = 'https://cdn.discordapp.com/attachments/802613961610231879/802627200472842300/TIME.png'
         await message.channel.send(mrarnab)
     #please don't use u
