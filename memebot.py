@@ -3,7 +3,7 @@ import os
 
 client = discord.Client()
 
-banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
+banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ', 'u ', 'U ', 'ur ', 'Ur ', 'UR ', ' u', ' U', ' ur', ' Ur', ' UR',]
 
 all_Inputs = [
     " 'typo again?' -- Provide someone in need with a keybaord.",
