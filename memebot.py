@@ -18,6 +18,7 @@ no_inputs = len(all_Inputs)
 @client.event
 
 async def on_ready():
+    await client.change_presence(status = discord.Status.idle, activity=discord.Game('"what can I do?"'))
     print('We have logged in as {0.user}'.format(client))
 
 @client.event
