@@ -38,8 +38,8 @@ async def on_message(message):
         await message.channel.send('HELLO!')
     #hey mr arnab
     if message.content.startswith('hey mr. arnab'):
-        time = 'https://cdn3.bbcode0.com/uploads/2021/1/24/ec337d7a0af5b036e078117309bcb011-full.png'
-        await message.channel.send(time)
+        mrarnab = 'https://cdn.discordapp.com/attachments/802613961610231879/802627200472842300/TIME.png'
+        await message.channel.send(mrarnab)
     #please don't use u
     if any(word in message.content for word in banned_words):
         pleaseno = 'https://pbs.twimg.com/media/EsV_mSAU0AM2PC1?format=png&name=small'
