@@ -4,6 +4,8 @@ import random
 client = discord.Client()
 
 banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
+soch = [' kya hai?', ' kya hai']
+idea = ['What is ', 'what is ']
 rick_roll = [
     'https://pbs.twimg.com/media/Esg4czOVoAA4Qnq?format=jpg&name=medium',
     'https://pbs.twimg.com/media/Esg4dapVoAALIkh?format=jpg&name=medium',
@@ -17,21 +19,34 @@ sorry_sayings = [
     "https://media.giphy.com/media/UiZpBJIwdJ34k/giphy.gif",
     "'OBLITERATED!' \n --Raze. "
 ]
-all_Inputs = [
-    " 'typo again?' -- Provide someone in need with a keybaord.",
-    " 'mind blown' -- Oh your mind is blown? Tell me about it.",
-    " 'good stuff' -- Certainly the person has some GOOOOOOOD stuff.",
-    " 'mood kharab' -- Why do you ruin my mood?",
-    " 'Happy god laptop day' -- Happy god laptop day",
-    " 'Happy milk day' -- Happy milk day",
-    " 'Sab moh maya hai' -- For the times when everything feels like moh maya",
-    " NEVER GONNA SAY GOODBYE",
-    " //or you could try greeting me\\",
-    "MADE BY OJAS. I know I know, thank you thank you. YES OKAY! THANK YOU. Oh now this is becoming flattery. I know I am awesome thank you thank you."
+head_fields = [
+    " 'typo again?'",
+    " 'mind blown'",
+    " 'good stuff'",
+    " 'mood kharab'",
+    " 'Happy god laptop day'",
+    " 'Happy milk day'",
+    " 'Sab moh maya hai'",
+    " -----------------",
+    " -----------------",
+    " -----------------"   
+]
+text_fields = [
+    "Provide someone in need with a keybaord.",
+    "Oh your mind is blown? Tell me about it.",
+    "Certainly the person has some GOOOOOOOD stuff.",
+    "Why do you ruin my mood?",
+    "Happy god laptop day",
+    "Happy milk day",
+    "For the times when everything feels like moh maya",
+    "Ask a 'What is [something]' question!",
+    "~~NEVER~~ GONNA SAY GOODBYE",
+    "|or you could try greeting me|"
 
 ]
-no_inputs = len(all_Inputs)
+no_inputs = len(head_fields)
 
+# print(all_Inputs)
 @client.event
 
 async def on_ready():
@@ -45,16 +60,19 @@ async def on_message(message):
     
     #user types what all can I do?
     if message.content.startswith('what can I do?') or message.content.startswith('What can I do?'):
-        await message.channel.send('You can do a whole bunch of stuff with this bot!')
-        await message.channel.send('You can type the following things: ')
+        head = "You can do a whole bunch of things with this bot!"
+        abilitiesEmbed = discord.Embed(title = "Welcome to meme bot!", description = head, color=0xeb4034)
         for thingsToSay in range(no_inputs):
-            await message.channel.send(all_Inputs[thingsToSay])
+            abilitiesEmbed.add_field(name=head_fields[thingsToSay], value= text_fields[thingsToSay], inline= False)
+        abilitiesEmbed.set_footer(text= "MADE BY OJAS. I know I know, thank you thank you. YES OKAY! THANK YOU. Oh now this is becoming flattery. I know I am awesome thank you thank you.")
+        await message.channel.send(embed = abilitiesEmbed)
+
 
     #greeting
     if message.content.startswith('hey') or message.content.startswith('hello') or message.content.startswith('hi') or message.content.startswith('yo') or message.content.startswith('heyo') or message.content.startswith('Hello') or message.content.startswith('Hi') or message.content.startswith('Yo') or message.content.startswith('Heyo'):
         await message.channel.send('HELLO!')
     #hey mr arnab
-    if message.content.startswith('Get me a time magazine'):
+    if message.content.startswith('Get me a time magazine') or message.content.startswith('get me a time magazine'):
         mrarnab = 'https://cdn.discordapp.com/attachments/802613961610231879/802627200472842300/TIME.png'
         await message.channel.send(mrarnab)
     #please don't use u
@@ -74,11 +92,11 @@ async def on_message(message):
         thumbsup = 'https://tenor.com/view/boy-kid-computer-thumbs-up-face-gif-9548945'
         await message.channel.send(thumbsup)
     #mood kharab
-    if message.content.startswith('mood kharab'):
+    if message.content.startswith('mood kharab') or message.content.startswith('Mood kharab'):
         moodkharab = 'https://pbs.twimg.com/media/Esg1vmeU0AAL6TR?format=png&name=small'
         await message.channel.send(moodkharab)
     #bye
-    if message.content.startswith('bye') or message.content.startswith('Bye') or message.content.startswith('Goodbye') or message.content.startswith('goodbye'):
+    if message.content.startswith('bye') or message.content.startswith('Bye') or message.content.startswith('Goodbye') or message.content.startswith('goodbye') or message.content.startswith('Peace out') or message.content.startswith('peace out'):
         bye = 'https://tenor.com/view/peace-out-bye-gif-10267883'
         await message.channel.send(bye)
     #Happy god laptop day
@@ -101,5 +119,37 @@ async def on_message(message):
     if message.content.startswith('sab moh maya hai') or message.content.startswith('Sab moh maya hai'):
         mohmaya = 'https://pbs.twimg.com/media/Esg-rXCVoAIXly2?format=png&name=900x900'
         await message.channel.send(mohmaya)
+    #soch hai/is an idea
+    if message.content.endswith(" kya hai?"):
+        cropped_message = message.content.removesuffix(' kya hai?')
+        await message.channel.send(cropped_message + ' ek soch hai!🤯💭')
+    elif message.content.endswith(" kya hai"):
+        cropped_message = message.content.removesuffix(' kya hai')
+        await message.channel.send(cropped_message + ' ek soch hai!🤯💭')
+    elif message.content.startswith("What is "):
+        removalquestion = message.content.removesuffix('?')
+        cropped_message = removalquestion.removeprefix('What is ')
+        await message.channel.send(cropped_message + ' is an idea!🤯💭')
+    elif message.content.startswith("what is "):
+        removalquestion = message.content.removesuffix('?')
+        cropped_message = removalquestion.removeprefix('what is ')
+        await message.channel.send(cropped_message + ' is an idea!🤯💭')
+
+    # if any(phrase in message.content for phrase in soch):
+    #     sochmessage = message.content
+    #     cropped_message = sochmessage.rstrip(' kya hai')
+    #     if sochmessage == cropped_message:
+    #         cropped_message = sochmessage.rstrip(' kya hai?')
+    #     s = ' ek soch hai!🤯💭'
+    #     await message.channel.send( cropped_message + s)
+    # elif any(phrase in message.content for phrase in idea):
+    #     ideamessage = message.content
+    #     removalquestion = ideamessage.rstrip('?')
+    #     cropped_message = removalquestion.lstrip('What is ')
+    #     if removalquestion == cropped_message:
+    #         cropped_message = ideamessage.lstrip('what is ')
+    #     await message.channel.send(cropped_message + " is an idea!🤯💭")
+        
+
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
