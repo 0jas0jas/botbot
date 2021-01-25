@@ -60,7 +60,7 @@ async def on_message(message):
     
     #user types what all can I do?
     if message.content.startswith('what can I do?') or message.content.startswith('What can I do?'):
-        head = "You can do a whole bunch of things with this bot!"
+        head = "You can do a whole bunch of things with this bot! \n Try typing one of the following:"
         abilitiesEmbed = discord.Embed(title = "Welcome to meme bot!", description = head, color=0xeb4034)
         for thingsToSay in range(no_inputs):
             abilitiesEmbed.add_field(name=head_fields[thingsToSay], value= text_fields[thingsToSay], inline= False)
