@@ -151,7 +151,7 @@ async def on_message(message):
         await message.channel.send(cropped_message + ' is an idea!🤯💭')
 
     #INCLUDE ARREY BOHOT INTERESTING HAI
-    if message.content.startswith("Arrey bohot interesting hai") or message.content.startswith("Arrey bohot interesting hai"):
+    if message.content.startswith("Arrey bohot interesting hai") or message.content.startswith("arrey bohot interesting hai"):
         interesting = 'https://media.giphy.com/media/xtSLPH1I0S7p4hJ4Ty/giphy.gif'
         await message.channel.send(interesting)
     
