@@ -1,11 +1,24 @@
+# coding=utf-8
+
 import discord
 import os
 import random
+from datetime import datetime
+import pytz
 client = discord.Client()
 
 banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
-soch = [' kya hai?', ' kya hai']
-idea = ['What is ', 'what is ']
+
+time_sayings = [
+    "* airport lady voice *",
+    "Okay I am going to say this ONCE-- I. Am. Not. A. Clock. \n BTW",
+    "Time is like a waterfall, it's always running...",
+    "Time is like a box of chocola- \n Nah, man.",
+    "Run TIME Run",
+    "TAAAAAAAAAAAAAAAAAAAIME",
+    "What IS time? Time is an idea",
+    "Time kya hai? Time ek soch hai"
+]
 rick_roll = [
     'https://pbs.twimg.com/media/Esg4czOVoAA4Qnq?format=jpg&name=medium',
     'https://pbs.twimg.com/media/Esg4dapVoAALIkh?format=jpg&name=medium',
@@ -17,7 +30,11 @@ sorry_sayings = [
     "OKAY OKAY No need to be so sensitive. GOSH people of these days.",
     "Oh really? YOU are irritated? YOU are? YOU?",
     "https://media.giphy.com/media/UiZpBJIwdJ34k/giphy.gif",
-    "'OBLITERATED!' \n --Raze. "
+    "My grandfather used to say: es yogins prétendent que, de toutes les énergies que renferme le corps humain, la plus haute est celle qu’ils appellent ojas. Or, cet ojas est emmagasiné dans le cerveau, et plus il y a d’ojas dans la tête d’un homme, plus l’homme est puissant, intelligent, et spirituellement vigoureux. Tel homme peut employer de belles paroles et exprimer de belles pensées sans faire aucune impression sur ceux qui l’écoutent ; tel autre, sans beau langage et sans belles idées, charme par ses paroles. Chacun de ses mouvements a de la puissance. C’est la puissance d’ojas. Or, en chaque homme se trouve emmagasinée une quantité plus ou moins grande d’ojas. Toutes les forces qui travaillent dans le corps deviennent à leur degré suprême, des ojas. Il faut vous rappeler qu’il ne s’agit là que d’une transformation. La même force qui est à l’œuvre en dehors de nous comme électricité ou comme magnétisme se changera en force intérieure ; les mêmes forces qui opèrent comme énergie musculaire se transformeront en ojas. Les yogins nous disent que la partie de l’énergie humaine qui s’exprime comme énergie sexuelle, comme pensée sexuelle, se transforme facilement en ojas lorsqu’on la refrène et qu’on la dirige. I WILL NEVER SHUT UP MUAHAHAHAHAHAHA ",
+    "You got it, Boss.",
+    "911. What's your emergency?",
+    "You see, I just got my driver's lisence. Just like we talked about and you were SOOOOOOOO darn excited for me to finally drive up to your house but you know what I did? DO YOU KNOW? I drove through the freaking suburbs!",
+    "Ojas: * shutting up noises * "
 ]
 head_fields = [
     " 'typo again?'",
@@ -26,6 +43,7 @@ head_fields = [
     " 'mood kharab'",
     " 'Happy god laptop day'",
     " 'Happy milk day'",
+    " 'Time'",
     " 'Sab moh maya hai'",
     " 'Arrey bohot interesting hai'",
     " -----------------",
@@ -39,6 +57,7 @@ text_fields = [
     "Why do you ruin my mood?",
     "Happy god laptop day",
     "Happy milk day",
+    "Time. That's deep, man!",
     "For the times when everything feels like moh maya",
     "Common Ojas sayings.",
     "Ask a 'What is [something]' question!",
@@ -47,6 +66,9 @@ text_fields = [
 
 ]
 no_inputs = len(head_fields)
+no_sorry_sayings = len(sorry_sayings)
+no_rick_roll = len(rick_roll)
+no_time_sayings = len(time_sayings)
 
 # print(all_Inputs)
 @client.event
@@ -123,11 +145,13 @@ async def on_message(message):
 
     #shut up ojas
     if message.content.startswith('Shut up, Ojas') or message.content.startswith('shut up, ojas') or  message.content.startswith('SHUT UP, OJAS') or message.content.startswith('Shut up ojas') or message.content.startswith('shut up ojas') or message.content.startswith('SHUT UP OJAS'):
-        await message.channel.send(random.choice(sorry_sayings))
+        randombleh = random.randrange(0, no_sorry_sayings, 1)
+        await message.channel.send(sorry_sayings[randombleh])
 
     #We're no strangers to love
     if message.content.startswith("Never gonna") or message.content.startswith("never gonna"):
-        await message.channel.send(random.choice(rick_roll))
+        randombleh = random.randrange(0, no_rick_roll, 1)
+        await message.channel.send(rick_roll[randombleh])
 
     #Sab Moh Maya hai
     if message.content.startswith('sab moh maya hai') or message.content.startswith('Sab moh maya hai'):
@@ -154,6 +178,14 @@ async def on_message(message):
     if message.content.startswith("Arrey bohot interesting hai") or message.content.startswith("arrey bohot interesting hai"):
         interesting = 'https://media.giphy.com/media/xtSLPH1I0S7p4hJ4Ty/giphy.gif'
         await message.channel.send(interesting)
+    
+    #time
+    if message.content.startswith("Time") or message.content.startswith("time"):
+        time = pytz.timezone('Asia/Kolkata')
+        tame = datetime.now(time)
+        randombleh = random.randrange(0, no_time_sayings, 1)
+        await message.channel.send(time_sayings[randombleh])
+        await message.channel.send("The time is " + tame.strftime("%H:%M"))
     
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
