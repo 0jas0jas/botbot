@@ -186,6 +186,12 @@ async def on_message(message):
         randombleh = random.randrange(0, no_time_sayings, 1)
         await message.channel.send(time_sayings[randombleh])
         await message.channel.send("The time is " + tame.strftime("%H:%M"))
+    if message.content.startswith("Time riyadh") or message.content.startswith("time riyadh"):
+        time = pytz.timezone('Asia/Riyadh')
+        taime = datetime.now(time)
+        randombleh = random.randrange(0, no_time_sayings, 1)
+        await message.channel.send(time_sayings[randombleh])
+        await message.channel.send("The time is " + taime.strftime("%H:%M"))
     
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
