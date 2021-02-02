@@ -1,10 +1,23 @@
 # coding=utf-8
 
+import art
 import discord
 import os
 import random
 from datetime import datetime
 import pytz
+import wolframalpha
+import http.client
+import random
+
+# import praw
+
+# reddit = praw.Reddit(client_id = "1oHVkzcbJa2xEA",
+#                      client_secret =  "J_kvARsiFQjKmuYb6MrjTOuqU6tIlg",
+#                      username = "0ajs0jas", password = "y0ush@lln0tp@ss")
+
+# app_id = '8GUU89-YTLG2XLPRR'  # get your own at https://products.wolframalpha.com/api/
+# client = wolframalpha.Client(app_id)
 client = discord.Client()
 
 banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
@@ -48,7 +61,6 @@ head_fields = [
     " 'Arrey bohot interesting hai'",
     " -----------------",
     " -----------------",
-    " -----------------"   
 ]
 text_fields = [
     "Provide someone in need with a keybaord.",
@@ -62,7 +74,6 @@ text_fields = [
     "Common Ojas sayings.",
     "Ask a 'What is [something]' question!",
     "~~NEVER~~ GONNA SAY GOODBYE",
-    "|or you could try greeting me|"
 
 ]
 no_inputs = len(head_fields)
@@ -90,11 +101,6 @@ async def on_message(message):
             abilitiesEmbed.add_field(name=head_fields[thingsToSay], value= text_fields[thingsToSay], inline= False)
         abilitiesEmbed.set_footer(text= "MADE BY OJAS. I know I know, thank you thank you. YES OKAY! THANK YOU. Oh now this is becoming flattery. I know I am awesome thank you thank you.")
         await message.channel.send(embed = abilitiesEmbed)
-
-
-    #greeting
-    if message.content.startswith('hey') or message.content.startswith('hello') or message.content.startswith('hi') or message.content.startswith('yo') or message.content.startswith('heyo') or message.content.startswith('Hello') or message.content.startswith('Hi') or message.content.startswith('Yo') or message.content.startswith('Heyo'):
-        await message.channel.send('HELLO!')
         
     #hey mr arnab
     if message.content.startswith('Get me a time magazine') or message.content.startswith('get me a time magazine'):
@@ -174,7 +180,7 @@ async def on_message(message):
         cropped_message = removalquestion.removeprefix('what is ')
         await message.channel.send(cropped_message + ' is an idea!🤯💭')
 
-    #INCLUDE ARREY BOHOT INTERESTING HAI
+    #ARREY BOHOT INTERESTING HAI
     if message.content.startswith("Arrey bohot interesting hai") or message.content.startswith("arrey bohot interesting hai"):
         interesting = 'https://media.giphy.com/media/xtSLPH1I0S7p4hJ4Ty/giphy.gif'
         await message.channel.send(interesting)
@@ -193,5 +199,32 @@ async def on_message(message):
         await message.channel.send(time_sayings[randombleh])
         await message.channel.send("The time is " + taime.strftime("%H:%M"))
     
+    if message.content.startswith("Happy birthday GOD"):
+        await message.channel.send(100 * "All hail GOD \n")
+        laptopday = 'https://pbs.twimg.com/media/EtAAFoNU0AYXAuF?format=jpg&name=medium'
+        await message.channel.send(laptopday)
+        await message.channel.send('@everyone ')
+
+    #WoW [something]
+    if message.content.startswith("WoW"):
+        conn = http.client.HTTPSConnection("img4me.p.rapidapi.com")
+
+        headers = {
+            'x-rapidapi-key': "5bf8810151msh9a49d8e81e67caap1beea4jsnf3836573128e",
+            'x-rapidapi-host': "img4me.p.rapidapi.com"
+            }
+        fonts_image = ["arial", "comic", "dyslexic", "georgia", "impact", "lucida", "simsun", "tahoma", "times", "trebuchet", "verdana"]
+        chosen_font = random.choice(fonts_image)
+        taxt = message.content
+        final_text = taxt.replace(" ", "%20")
+        conn.request("GET", "/?text="+ final_text +"&fcolor=FFFFFF&bcolor=36393f&font=" + chosen_font + "&size=35&type=png", headers=headers)
+
+        res = conn.getresponse()
+        data = res.read()
+
+        await message.channel.send(data.decode("utf-8"))
+
+
+
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
