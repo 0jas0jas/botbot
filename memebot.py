@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import art
+import asyncio
 import discord
 import os
 import random
@@ -9,19 +9,27 @@ import pytz
 import wolframalpha
 import http.client
 import random
+import praw
 
-# import praw
+#wolframAlpha
+app_id = "8GUU89-YTLG2XLPRR"
 
-# reddit = praw.Reddit(client_id = "1oHVkzcbJa2xEA",
-#                      client_secret =  "J_kvARsiFQjKmuYb6MrjTOuqU6tIlg",
-#                      username = "0ajs0jas", password = "y0ush@lln0tp@ss")
+#reddit
+reddit = praw.Reddit(client_id = "PiZLpYlDOi67-Q", client_secret = "Mup9D2lvnNOvaBPRUBp4P3SStBa1JA", user_agent = "memehub")
 
-# app_id = '8GUU89-YTLG2XLPRR'  # get your own at https://products.wolframalpha.com/api/
-# client = wolframalpha.Client(app_id)
+
 client = discord.Client()
 
 banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
 
+reddit_subreddits = [
+    "memes",
+    "Physics",
+    "ProgrammerHumor",
+    "science",
+    "ElectroBOOM",
+    "illusionporn",
+]
 time_sayings = [
     "* airport lady voice *",
     "Okay I am going to say this ONCE-- I. Am. Not. A. Clock. \n BTW",
@@ -47,7 +55,10 @@ sorry_sayings = [
     "You got it, Boss.",
     "911. What's your emergency?",
     "You see, I just got my driver's lisence. Just like we talked about and you were SOOOOOOOO darn excited for me to finally drive up to your house but you know what I did? DO YOU KNOW? I drove through the freaking suburbs!",
-    "Ojas: * shutting up noises * "
+    "Ojas: * shutting up noises * ",
+    "No you!",
+    "* ignores *",
+    "https://youtu.be/BLUkgRAy_Vo",
 ]
 head_fields = [
     " 'typo again?'",
@@ -56,6 +67,7 @@ head_fields = [
     " 'mood kharab'",
     " 'Happy god laptop day'",
     " 'Happy milk day'",
+    " Type anything ending with '='",
     " 'Time'",
     " 'Sab moh maya hai'",
     " 'Arrey bohot interesting hai'",
@@ -69,6 +81,7 @@ text_fields = [
     "Why do you ruin my mood?",
     "Happy god laptop day",
     "Happy milk day",
+    "Calculations Calculations Calculations",
     "Time. That's deep, man!",
     "For the times when everything feels like moh maya",
     "Common Ojas sayings.",
@@ -80,6 +93,7 @@ no_inputs = len(head_fields)
 no_sorry_sayings = len(sorry_sayings)
 no_rick_roll = len(rick_roll)
 no_time_sayings = len(time_sayings)
+no_subreddits = len(reddit_subreddits)
 
 # print(all_Inputs)
 @client.event
@@ -224,6 +238,44 @@ async def on_message(message):
 
         await message.channel.send(data.decode("utf-8"))
 
+    #Dream calculator
+    if message.content.endswith("="):
+        alpha = wolframalpha.Client(app_id)
+        calc = message.content
+        res = alpha.query(calc)
+        answer = next(res.results).text
+        await message.channel.send("Yo yo yo, your answer is " + answer)
+    
+    if message.content.startswith("meme"):
+        subreddit = reddit.subreddit("memes")
+        all_subs = []
+        latest = subreddit.latest(limit=5)
+        for submission in latest:
+            all_subs.append(submission)
+        random_sub = random.choice(all_subs)
+
+        name = random_sub.title
+        url = random_sub.url
+
+        em = discord.Embed(Title= name)
+        em.set_image(url=url)
+
+        await message.channel.send(embed=em)
+    if message.content.startswith('Start The Reddit'):
+        while 1 == 1:
+            channel = client.get_channel(805782644654604298)
+            # for i in range(no_subreddits):
+
+
+            #     await channel.send(embed=em)
+            posts = reddit.subreddit(reddit_subreddits[i])
+            hot = posts.hot(limit=1)
+            for submission in hot:
+                name = submission.title
+                url = submission.url
+            em = discord.Embed(title= name)
+            em.set_image(url=url)
+            await asyncio.sleep(900)
 
 
 #Token for bot    
