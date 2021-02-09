@@ -28,7 +28,6 @@ reddit_subreddits = [
     "ProgrammerHumor",
     "science",
     "ElectroBOOM",
-    "illusionporn",
 ]
 time_sayings = [
     "* airport lady voice *",
@@ -249,33 +248,53 @@ async def on_message(message):
     if message.content.startswith("meme"):
         subreddit = reddit.subreddit("memes")
         all_subs = []
-        latest = subreddit.latest(limit=5)
-        for submission in latest:
+        hot = subreddit.hot(limit=25)
+        for submission in hot:
             all_subs.append(submission)
         random_sub = random.choice(all_subs)
 
         name = random_sub.title
         url = random_sub.url
 
-        em = discord.Embed(Title= name)
+        em = discord.Embed(title= name)
         em.set_image(url=url)
 
         await message.channel.send(embed=em)
     if message.content.startswith('Start The Reddit'):
         while 1 == 1:
             channel = client.get_channel(805782644654604298)
-            # for i in range(no_subreddits):
-
+            channel_onlineDiscussion = client.get_channel(807346442431234118)
+            for i in range(no_subreddits):
+                    posts = reddit.subreddit(reddit_subreddits[i])
+                    rising = posts.rising(limit=5)
+                    all_posts = []
+                    for submission in rising:
+                        all_posts.append(submission)
+                    random_post = random.choice(all_posts)
+                    name = random_post.title
+                    url = random_post.url
+                    permalink = "https://www.reddit.com/" + random_post.permalink
+                    subreddit_info = "This post is from r/" + reddit_subreddits[i]
+                    em = discord.Embed(title= "Top **5** posts in r/" + reddit_subreddits[i])
+                    em.add_field(name="--------------", value="[" + name + "](" + permalink + ")")
+                    em.set_image(url=url)
+                    em.set_footer(text=subreddit_info)
+                    await channel.send(embed=em)
+                    await channel_onlineDiscussion.send(embed=em)
+                    await asyncio.sleep(30)
+            await asyncio.sleep(1800)
 
             #     await channel.send(embed=em)
-            posts = reddit.subreddit(reddit_subreddits[i])
-            hot = posts.hot(limit=1)
-            for submission in hot:
-                name = submission.title
-                url = submission.url
-            em = discord.Embed(title= name)
-            em.set_image(url=url)
-            await asyncio.sleep(900)
+            # posts = reddit.subreddit(memes)
+            # hot = posts.hot(limit=5)
+            # all_posts = []
+            # for submission in hot:
+            #     all_posts.append(submission)
+            # name = rand_sub.Title
+            # url = rand_sub.url
+            # em = discord.Embed(title= name)
+            # em.set_image(url=url)
+
 
 
 #Token for bot    
