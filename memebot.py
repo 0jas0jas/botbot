@@ -24,10 +24,8 @@ banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
 
 reddit_subreddits = [
     "memes",
-    "Physics",
-    "ProgrammerHumor",
-    "science",
-    "ElectroBOOM",
+    "dankmemes",
+    "meme",
 ]
 time_sayings = [
     "* airport lady voice *",
@@ -234,8 +232,12 @@ async def on_message(message):
 
         res = conn.getresponse()
         data = res.read()
-
-        await message.channel.send(data.decode("utf-8"))
+        em = discord.Embed(description=' '.format(message.author))
+        em.set_thumbnail(url=message.author.avatar_url)
+        WoW_image = data.decode("utf-8")
+        em.set_image(url=WoW_image)
+        await message.channel.send(embed=em)
+        await message.delete(message.message)
 
     #Dream calculator
     if message.content.endswith("="):
@@ -244,58 +246,25 @@ async def on_message(message):
         res = alpha.query(calc)
         answer = next(res.results).text
         await message.channel.send("Yo yo yo, your answer is " + answer)
-    
-    if message.content.startswith("meme"):
-        subreddit = reddit.subreddit("memes")
-        all_subs = []
-        hot = subreddit.hot(limit=25)
-        for submission in hot:
-            all_subs.append(submission)
-        random_sub = random.choice(all_subs)
 
-        name = random_sub.title
-        url = random_sub.url
-
-        em = discord.Embed(title= name)
-        em.set_image(url=url)
-
-        await message.channel.send(embed=em)
-    if message.content.startswith('Start The Reddit'):
-        while 1 == 1:
-            channel = client.get_channel(805782644654604298)
-            channel_onlineDiscussion = client.get_channel(807346442431234118)
-            for i in range(no_subreddits):
-                    posts = reddit.subreddit(reddit_subreddits[i])
-                    rising = posts.rising(limit=5)
+    #redditMemes
+    if message.content.startswith("meme") or message.content.startswith("memes"):
+                    random_sub = random.choice(reddit_subreddits)
+                    posts = reddit.subreddit(random_sub)
+                    hot = posts.rising(limit=25)
                     all_posts = []
-                    for submission in rising:
+                    for submission in hot:
                         all_posts.append(submission)
                     random_post = random.choice(all_posts)
                     name = random_post.title
                     url = random_post.url
                     permalink = "https://www.reddit.com/" + random_post.permalink
-                    subreddit_info = "This post is from r/" + reddit_subreddits[i]
-                    em = discord.Embed(title= "Top **5** posts in r/" + reddit_subreddits[i])
+                    subreddit_info = "This post is from r/" + random_sub
+                    em = discord.Embed(title= "Yo there you go")
                     em.add_field(name="--------------", value="[" + name + "](" + permalink + ")")
                     em.set_image(url=url)
                     em.set_footer(text=subreddit_info)
-                    await channel.send(embed=em)
-                    await channel_onlineDiscussion.send(embed=em)
-                    await asyncio.sleep(30)
-            await asyncio.sleep(1800)
-
-            #     await channel.send(embed=em)
-            # posts = reddit.subreddit(memes)
-            # hot = posts.hot(limit=5)
-            # all_posts = []
-            # for submission in hot:
-            #     all_posts.append(submission)
-            # name = rand_sub.Title
-            # url = rand_sub.url
-            # em = discord.Embed(title= name)
-            # em.set_image(url=url)
-
-
+                    await message.channel.send(embed=em)
 
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
