@@ -56,6 +56,9 @@ sorry_sayings = [
     "No you!",
     "* ignores *",
     "https://youtu.be/BLUkgRAy_Vo",
+    "[insert sick burn here]",
+    "WoW Ojas won't just shut up",
+    "* sings rap god *"
 ]
 head_fields = [
     " 'typo again?'",
@@ -177,7 +180,7 @@ async def on_message(message):
         em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
         em.set_image(url=mohmaya)
         await message.channel.send(embed=em)
-        await message.5delete()
+        await message.delete()
 
     #soch hai/is an idea
     if message.content.endswith(" kya hai?"):
@@ -252,8 +255,10 @@ async def on_message(message):
         await message.channel.send("Yo yo yo, your answer is " + answer)
 
     #redditMemes
-    if message.content.startswith("meme ") or message.content.startswith("Meme "):
-                    random_sub = random.choice(reddit_subreddits)
+    if message.content.startswith("meme"):
+                    random_sub = message.content.removeprefix("meme ")
+                    if (not random_sub):
+                        random_sub = random.choice(reddit_subreddits)
                     posts = reddit.subreddit(random_sub)
                     hot = posts.rising(limit=25)
                     all_posts = []
@@ -264,8 +269,9 @@ async def on_message(message):
                     url = random_post.url
                     permalink = "https://www.reddit.com/" + random_post.permalink
                     subreddit_info = "This post is from r/" + random_sub
-                    em = discord.Embed(title= "Yo there you go")
-                    em.add_field(name="--------------", value="[" + name + "](" + permalink + ")")
+                    em = discord.Embed(title="")
+                    em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+                    em.add_field(name="-", value="[" + name + "](" + permalink + ")")
                     em.set_image(url=url)
                     em.set_footer(text=subreddit_info)
                     await message.channel.send(embed=em)
