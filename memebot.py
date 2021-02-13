@@ -66,7 +66,7 @@ head_fields = [
     " 'Happy milk day'",
     " Type anything ending with '='",
     " 'Time'",
-    " 'Sab moh maya hai'",
+    " 'Sab mohmaya hai'",
     " 'Arrey bohot interesting hai'",
     " -----------------",
     " -----------------",
@@ -171,9 +171,13 @@ async def on_message(message):
         await message.channel.send(rick_roll[randombleh])
 
     #Sab Moh Maya hai
-    if message.content.startswith('sab moh maya hai') or message.content.startswith('Sab moh maya hai'):
+    if message.content.startswith('sab moh maya hai') or message.content.startswith('Sab moh maya hai') or message.content.startswith('Sab mohmaya hai') or message.content.startswith('sab mohmaya hai'):
         mohmaya = 'https://pbs.twimg.com/media/Esg-rXCVoAIXly2?format=png&name=900x900'
-        await message.channel.send(mohmaya)
+        em = discord.Embed(color=discord.Color.red())
+        em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+        em.set_image(url=mohmaya)
+        await message.channel.send(embed=em)
+        await message.delete()
 
     #soch hai/is an idea
     if message.content.endswith(" kya hai?"):
@@ -232,12 +236,12 @@ async def on_message(message):
 
         res = conn.getresponse()
         data = res.read()
-        em = discord.Embed(description=' '.format(message.author))
-        em.set_thumbnail(url=message.author.avatar_url)
+        em = discord.Embed(title=" ")
+        em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
         WoW_image = data.decode("utf-8")
         em.set_image(url=WoW_image)
         await message.channel.send(embed=em)
-        await message.delete(message.message)
+        await message.delete()
 
     #Dream calculator
     if message.content.endswith("="):
