@@ -177,7 +177,7 @@ async def on_message(message):
         em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
         em.set_image(url=mohmaya)
         await message.channel.send(embed=em)
-        await message.delete()
+        await message.5delete()
 
     #soch hai/is an idea
     if message.content.endswith(" kya hai?"):
@@ -252,7 +252,7 @@ async def on_message(message):
         await message.channel.send("Yo yo yo, your answer is " + answer)
 
     #redditMemes
-    if message.content.startswith("meme") or message.content.startswith("memes"):
+    if message.content.startswith("meme ") or message.content.startswith("Meme "):
                     random_sub = random.choice(reddit_subreddits)
                     posts = reddit.subreddit(random_sub)
                     hot = posts.rising(limit=25)
