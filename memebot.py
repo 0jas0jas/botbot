@@ -256,9 +256,10 @@ async def on_message(message):
 
     #redditMemes
     if message.content.startswith("meme"):
-                    random_sub = message.content.removeprefix("meme ")
+                    random_sub = message.content.removeprefix("meme")
                     if (not random_sub):
-                        random_sub = random.choice(reddit_subreddits)
+                        random_subreddit = random.choice(reddit_subreddits)
+                        random_sub = random_subreddit
                     posts = reddit.subreddit(random_sub)
                     hot = posts.rising(limit=25)
                     all_posts = []
