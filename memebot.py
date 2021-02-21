@@ -256,10 +256,10 @@ async def on_message(message):
 
     #redditMemes
     if message.content.startswith("meme"):
-                    random_sub = message.content.removeprefix("meme")
+                    random_sub = message.content.removeprefix("meme ")
                     if (not random_sub):
                         random_subreddit = random.choice(reddit_subreddits)
-                        random_sub = random_subreddit
+                        random_sub = random_subreddit 
                     posts = reddit.subreddit(random_sub)
                     hot = posts.rising(limit=25)
                     all_posts = []
@@ -276,6 +276,10 @@ async def on_message(message):
                     em.set_image(url=url)
                     em.set_footer(text=subreddit_info)
                     await message.channel.send(embed=em)
+    #frickoff
+    if message.content.startswith("Fuck off") or message.content.startswith("fuck off"):
+        picture = 'https://i.redd.it/ptm4c3jqzri61.png'
+        await message.channel.send(picture)
 
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
