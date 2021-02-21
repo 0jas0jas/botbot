@@ -68,6 +68,7 @@ head_fields = [
     " 'Happy god laptop day'",
     " 'Happy milk day'",
     " Type anything ending with '='",
+    " meme [subreddit]",
     " 'Time'",
     " 'Sab mohmaya hai'",
     " 'Arrey bohot interesting hai'",
@@ -82,6 +83,7 @@ text_fields = [
     "Happy god laptop day",
     "Happy milk day",
     "Calculations Calculations Calculations",
+    "Get a random meme by typing 'meme' or get memes from your favourite subreddit.",
     "Time. That's deep, man!",
     "For the times when everything feels like moh maya",
     "Common Ojas sayings.",
@@ -256,7 +258,8 @@ async def on_message(message):
 
     #redditMemes
     if message.content.startswith("meme"):
-                    random_sub = message.content.removeprefix("meme ")
+                    messssaage = message.content
+                    random_sub = messssaage[5:]
                     if (not random_sub):
                         random_subreddit = random.choice(reddit_subreddits)
                         random_sub = random_subreddit 
