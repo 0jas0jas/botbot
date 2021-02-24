@@ -148,6 +148,11 @@ async def on_message(message):
         moodkharab = 'https://pbs.twimg.com/media/Esg1vmeU0AAL6TR?format=png&name=small'
         await message.channel.send(moodkharab)
 
+    #mood fresh
+    if message.content.startswith('mood fresh') or message.content.startswith('Mood fresh'):
+        moodfresh = 'https://i.redd.it/om1apvxcsej61.png'
+        await message.channel.send(moodfresh)
+
     #bye
     if message.content.startswith('bye') or message.content.startswith('Bye') or message.content.startswith('Goodbye') or message.content.startswith('goodbye') or message.content.startswith('Peace out') or message.content.startswith('peace out'):
         bye = 'https://tenor.com/view/peace-out-bye-gif-10267883'
