@@ -148,6 +148,10 @@ async def on_message(message):
         moodkharab = 'https://pbs.twimg.com/media/Esg1vmeU0AAL6TR?format=png&name=small'
         await message.channel.send(moodkharab)
 
+    if message.content.startswith('random'):
+        randommes = random.randrange(1, 100, 1)
+        await message.channel.send(randommes)
+
     #mood fresh
     if message.content.startswith('mood fresh') or message.content.startswith('Mood fresh'):
         moodfresh = 'https://i.redd.it/om1apvxcsej61.png'
@@ -287,6 +291,11 @@ async def on_message(message):
     #frickoff
     if message.content.startswith("Fuck off") or message.content.startswith("fuck off"):
         picture = 'https://i.redd.it/ptm4c3jqzri61.png'
+        await message.channel.send(picture)
+
+    #understandable
+    if message.content.startswith("understandable") or message.content.startswith("Understandable"):
+        picture = 'https://pbs.twimg.com/media/Evychc1VcAQBPTB?format=jpg&name=medium'
         await message.channel.send(picture)
 
 #Token for bot    
