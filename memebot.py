@@ -295,8 +295,13 @@ async def on_message(message):
 
     #understandable
     if message.content.startswith("understandable") or message.content.startswith("Understandable"):
-        picture = 'https://pbs.twimg.com/media/Evychc1VcAQBPTB?format=jpg&name=medium'
+        picture = 'https://pbs.twimg.com/media/Ewis5bzUcAA_tqn?format=png&name=small'
         await message.channel.send(picture)
 
+    #okay
+    if message.content.startswith("Okay") or message.content.startswith("okay"):
+        picture = ''
+        await message.channel.send(picture)
+        
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
