@@ -300,7 +300,7 @@ async def on_message(message):
 
     #okay
     if message.content.startswith("Okay") or message.content.startswith("okay"):
-        picture = ''
+        picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
         await message.channel.send(picture)
         
 #Token for bot    
