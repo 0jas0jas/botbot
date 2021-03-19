@@ -324,9 +324,8 @@ async def on_message(message):
 
     #masterYoda!?!?!?!?!?
     if message.content.startswith("Master yoda") or message.content.startswith("master yoda"):
-        random = random.randrange(0, no_yoda, 1)
-        picture = yoda[random]
-        await message.channel.send(picture)
+        randombleh = random.randrange(0, no_yoda, 1)
+        await message.channel.send(yoda[randombleh])
         
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
