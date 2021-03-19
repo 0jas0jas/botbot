@@ -60,11 +60,27 @@ sorry_sayings = [
     "WoW Ojas won't just shut up",
     "* sings rap god *"
 ]
+
+yoda = [
+    "https://preview.redd.it/qv3lyh7byyn61.png?width=960&crop=smart&auto=webp&s=0492ffbd8e8a7e38271f6fa63f981e4d05e88c52",
+    "https://media.giphy.com/media/Wn74RUT0vjnoU98Hnt/giphy.gif",
+    "https://media.giphy.com/media/6fScAIQR0P0xW/giphy.gif",
+    "https://media.giphy.com/media/Ll1rEkDebTIdO/giphy.gif",
+    "https://media.giphy.com/media/SleotgmotWahW/giphy.gif",
+    "https://media.giphy.com/media/33iqmp5ATXT5m/giphy.gif",
+    "https://media.giphy.com/media/zQhFEBrX6plKg/giphy.gif",
+    "https://media.giphy.com/media/fItgT774J3nWw/giphy.gif",
+    
+]
+
 head_fields = [
     " 'typo again?'",
     " 'mind blown'",
     " 'good stuff'",
     " 'mood kharab'",
+    " 'mood fresh'",
+    " 'okay'",
+    " 'Understandable'",
     " 'Happy god laptop day'",
     " 'Happy milk day'",
     " Type anything ending with '='",
@@ -80,6 +96,9 @@ text_fields = [
     "Oh your mind is blown? Tell me about it.",
     "Certainly the person has some GOOOOOOOD stuff.",
     "Why do you ruin my mood?",
+    "Why do you freshen my mood?",
+    "Okay.",
+    "Understandable have a good day.",
     "Happy god laptop day",
     "Happy milk day",
     "Calculations Calculations Calculations",
@@ -96,7 +115,7 @@ no_sorry_sayings = len(sorry_sayings)
 no_rick_roll = len(rick_roll)
 no_time_sayings = len(time_sayings)
 no_subreddits = len(reddit_subreddits)
-
+no_yoda = len(yoda)
 # print(all_Inputs)
 @client.event
 
@@ -301,6 +320,12 @@ async def on_message(message):
     #okay
     if message.content.startswith("Okay") or message.content.startswith("okay"):
         picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
+        await message.channel.send(picture)
+
+    #masterYoda!?!?!?!?!?
+    if message.content.startswith("Master yoda") or message.content.startswith("master yoda"):
+        random = random.randrange(0, no_yoda, 1)
+        picture = yoda[random]
         await message.channel.send(picture)
         
 #Token for bot    
