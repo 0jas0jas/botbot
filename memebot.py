@@ -73,6 +73,16 @@ yoda = [
     "https://media.giphy.com/media/11ocEaLDZafNHa/giphy.gif",    
 ]
 
+sparrow = [
+    "https://media.giphy.com/media/o4Hy165vDlmDe/giphy.gif",
+    "https://media.giphy.com/media/idY2ToQsTzyCF7Viyd/giphy.gif",
+    "https://media.giphy.com/media/2PmMiUc9OH4lO/giphy.gif",
+    "https://media.giphy.com/media/Urb2J1xGRDjN6zljXH/giphy.gif",
+    "https://media.giphy.com/media/102oHwgyIqWwQo/giphy.gif",
+    "https://media.giphy.com/media/fdbMx2WGKqaze/giphy.gif"
+    
+]
+
 head_fields = [
     " 'typo again?'",
     " 'mind blown'",
@@ -116,6 +126,7 @@ no_rick_roll = len(rick_roll)
 no_time_sayings = len(time_sayings)
 no_subreddits = len(reddit_subreddits)
 no_yoda = len(yoda)
+no_sparrow = len(sparrow)
 # print(all_Inputs)
 @client.event
 
@@ -327,5 +338,9 @@ async def on_message(message):
         randombleh = random.randrange(0, no_yoda, 1)
         await message.channel.send(yoda[randombleh])
         
+    #captain sparrow!
+    if message.content.startswith("Captain Sparrow") or message.content.startswith("Captain sparrow") or message.content.startswith("captain sparrow"):
+        randombleh = random.randrange(0, no_sparrow, 1)
+        await message.channel.send(yoda[randombleh])
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
