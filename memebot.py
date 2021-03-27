@@ -178,7 +178,7 @@ async def on_message(message):
         moodkharab = 'https://pbs.twimg.com/media/Esg1vmeU0AAL6TR?format=png&name=small'
         await message.channel.send(moodkharab)
 
-    if message.content.startswith('random'):
+    if message.content.startswith('randNum'):
         randommes = random.randrange(1, 100, 1)
         await message.channel.send(randommes)
 
