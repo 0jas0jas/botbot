@@ -153,10 +153,10 @@ async def on_message(message):
         mrarnab = 'https://cdn.discordapp.com/attachments/802613961610231879/802627200472842300/TIME.png'
         await message.channel.send(mrarnab)
 
-    #please don't use u
-    if any(word in message.content for word in banned_words):
-        pleaseno = 'https://pbs.twimg.com/media/Esg2D42VoAInGYd?format=png&name=small'
-        await message.channel.send(pleaseno)
+    # #please don't use u
+    # if any(word in message.content for word in banned_words):
+    #     pleaseno = 'https://pbs.twimg.com/media/Esg2D42VoAInGYd?format=png&name=small'
+    #     await message.channel.send(pleaseno)
 
     #user types typo again?
     if message.content.startswith('typo again?') or message.content.startswith('Typo again?'):
@@ -328,8 +328,8 @@ async def on_message(message):
         picture = 'https://pbs.twimg.com/media/Ewis5bzUcAA_tqn?format=png&name=small'
         await message.channel.send(picture)
 
-    #okay
-    if message.content.startswith("Okay") or message.content.startswith("okay"):
+    #okay.
+    if message.content.startswith("Okay.") or message.content.startswith("okay."):
         picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
         await message.channel.send(picture)
 
