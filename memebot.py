@@ -333,6 +333,10 @@ async def on_message(message):
         await message.delete()
         await message.channel.send(embed=em)
 
+    if message.content.startswith("karma ") or message.content.endswith("Karma "):
+        txt = message.content[6:]
+        redditor = reddit.redditor(txt)
+        await message.channel.send(txt + " has " + str(redditor.link_karma) + " karma.")
     #frickoff
     if message.content.startswith("Fuck off") or message.content.startswith("fuck off"):
         picture = 'https://i.redd.it/ptm4c3jqzri61.png'
