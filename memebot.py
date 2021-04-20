@@ -318,6 +318,21 @@ async def on_message(message):
                     em.set_image(url=url)
                     em.set_footer(text=subreddit_info)
                     await message.channel.send(embed=em)
+
+    #redditAdd
+    if message.content.startswith("https://www.reddit.com"):
+        reddit_post = message.content
+        submission = reddit.submission(url=reddit_post)
+        name = submission.title
+        url = submission.url
+        permalink = "https://reddit.com/" + submission.permalink
+        em = discord.Embed(title="")
+        em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+        em.add_field(name="-", value="[" + name + "](" + permalink + ")")
+        em.set_image(url=url)
+        await message.delete()
+        await message.channel.send(embed=em)
+
     #frickoff
     if message.content.startswith("Fuck off") or message.content.startswith("fuck off"):
         picture = 'https://i.redd.it/ptm4c3jqzri61.png'
