@@ -10,6 +10,8 @@ import wolframalpha
 import http.client
 import random
 import praw
+from discord.ext import commands
+from discord.utils import get
 
 #wolframAlpha
 app_id = "8GUU89-YTLG2XLPRR"
@@ -18,8 +20,8 @@ app_id = "8GUU89-YTLG2XLPRR"
 reddit = praw.Reddit(client_id = "PiZLpYlDOi67-Q", client_secret = "Mup9D2lvnNOvaBPRUBp4P3SStBa1JA", user_agent = "memehub")
 
 
-client = discord.Client()
-
+# client = discord.Client()
+client = commands.Bot(command_prefix='p', help_command=None)
 banned_words = [' u ', ' U ', ' ur ', ' Ur ', ' UR ']
 
 reddit_subreddits = [
@@ -90,6 +92,9 @@ head_fields = [
     " 'mood kharab'",
     " 'mood fresh'",
     " 'okay'",
+    " 'Captain sparrow'",
+    " 'Master Yoda'",
+    " 'Get some help'",
     " 'Understandable'",
     " 'Happy god laptop day'",
     " 'Happy milk day'",
@@ -108,6 +113,9 @@ text_fields = [
     "Why do you ruin my mood?",
     "Why do you freshen my mood?",
     "Okay.",
+    "Who's our favourite pirate!?",
+    "All Hail Master Yoda",
+    "Stop it. Get some help.",
     "Understandable have a good day.",
     "Happy god laptop day",
     "Happy milk day",
@@ -352,6 +360,11 @@ async def on_message(message):
         picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
         await message.channel.send(picture)
 
+    #Get Some Help
+    if message.content.startswith('Get some help') or message.content.startswith('get some help'):
+        gif = 'https://tenor.com/view/stop-it-get-some-help-gif-15058124'
+        await message.channel.send(gif)
+
     #masterYoda!?!?!?!?!?
     if message.content.startswith("Master yoda") or message.content.startswith("master yoda"):
         randombleh = random.randrange(0, no_yoda, 1)
@@ -361,5 +374,18 @@ async def on_message(message):
     if message.content.startswith("Captain Sparrow") or message.content.startswith("Captain sparrow") or message.content.startswith("captain sparrow"):
         randombleh = random.randrange(0, no_sparrow, 1)
         await message.channel.send(yoda[randombleh])
+
+    #
+    # if message.content.startswith("appLe"):
+        # for member in Guild.members:
+        #     id = member.id
+        #     if id == "507194607117795328":
+        #         role = discord.utils.get(member.server.roles, name="JELLYFISH")
+        #         await client.add_roles(member, role)
+        # ojas = Guild.get_member(f, user_id="507194607117795328")
+        # role = discord.utils.get(ojas.server.roles, name="JELLYFISH")
+        # await client.add_roles(ojas, role)
+        
+
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
