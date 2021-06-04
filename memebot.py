@@ -349,9 +349,9 @@ async def on_message(message):
 
     #cRoOkEd
     if message.content.startswith("crooked ") or message.content.startswith("Crooked "):
-        message = message.content[8:]
+        text = message.content[8:]
         crooked_message = []
-        chars = list(message)
+        chars = list(text)
         switch = 1
 
         for char in chars:
