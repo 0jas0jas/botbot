@@ -266,34 +266,6 @@ async def on_message(message):
         await message.channel.send(time_sayings[randombleh])
         await message.channel.send("The time is " + taime.strftime("%H:%M"))
     
-    if message.content.startswith("Happy birthday GOD"):
-        await message.channel.send(100 * "All hail GOD \n")
-        laptopday = 'https://pbs.twimg.com/media/EtAAFoNU0AYXAuF?format=jpg&name=medium'
-        await message.channel.send(laptopday)
-        await message.channel.send('@everyone ')
-
-    #WoW [something]
-    if message.content.startswith("WoW"):
-        conn = http.client.HTTPSConnection("img4me.p.rapidapi.com")
-
-        headers = {
-            'x-rapidapi-key': "5bf8810151msh9a49d8e81e67caap1beea4jsnf3836573128e",
-            'x-rapidapi-host': "img4me.p.rapidapi.com"
-            }
-        fonts_image = ["arial", "comic", "dyslexic", "georgia", "impact", "lucida", "simsun", "tahoma", "times", "trebuchet", "verdana"]
-        chosen_font = random.choice(fonts_image)
-        taxt = message.content
-        final_text = taxt.replace(" ", "%20")
-        conn.request("GET", "/?text="+ final_text +"&fcolor=FFFFFF&bcolor=36393f&font=" + chosen_font + "&size=35&type=png", headers=headers)
-
-        res = conn.getresponse()
-        data = res.read()
-        em = discord.Embed(title=" ")
-        em.set_author(name=message.author.name, icon_url=message.author.avatar_url)
-        WoW_image = data.decode("utf-8")
-        em.set_image(url=WoW_image)
-        await message.channel.send(embed=em)
-        await message.delete()
 
     #Dream calculator
     if message.content.endswith("="):
@@ -373,19 +345,27 @@ async def on_message(message):
     #captain sparrow!
     if message.content.startswith("Captain Sparrow") or message.content.startswith("Captain sparrow") or message.content.startswith("captain sparrow"):
         randombleh = random.randrange(0, no_sparrow, 1)
-        await message.channel.send(yoda[randombleh])
+        await message.channel.send(sparrow[randombleh])
 
-    #
-    # if message.content.startswith("appLe"):
-        # for member in Guild.members:
-        #     id = member.id
-        #     if id == "507194607117795328":
-        #         role = discord.utils.get(member.server.roles, name="JELLYFISH")
-        #         await client.add_roles(member, role)
-        # ojas = Guild.get_member(f, user_id="507194607117795328")
-        # role = discord.utils.get(ojas.server.roles, name="JELLYFISH")
-        # await client.add_roles(ojas, role)
-        
+    #cRoOkEd
+    if message.content.startswith("crooked ") or message.content.startswith("Crooked "):
+        message = message.content[8:]
+        crooked_message = []
+        chars = list(message)
+        switch = 1
+
+        for char in chars:
+            if switch == 0:
+                crooked_message.append(char.lower())
+                switch = 1
+            elif switch == 1:
+                crooked_message.append(char.upper())
+                switch = 0
+
+
+        output = ''.join(crooked_message)
+        await message.channel.send(output)
+                
 
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
