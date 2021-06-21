@@ -29,6 +29,7 @@ reddit_subreddits = [
     "dankmemes",
     "meme",
 ]
+
 time_sayings = [
     "* airport lady voice *",
     "Okay I am going to say this ONCE-- I. Am. Not. A. Clock. \n BTW",
@@ -39,12 +40,28 @@ time_sayings = [
     "What IS time? Time is an idea",
     "Time kya hai? Time ek soch hai"
 ]
+
 rick_roll = [
     'https://pbs.twimg.com/media/Esg4czOVoAA4Qnq?format=jpg&name=medium',
     'https://pbs.twimg.com/media/Esg4dapVoAALIkh?format=jpg&name=medium',
     'https://pbs.twimg.com/media/Esg4d7LVoAYjLKZ?format=jpg&name=medium'
 ]
+
+sorry_sayings_mahi = [
+    "lalalalala i can't hear you",
+    "*insert some cringe but clever comeback*",
+    "did you know that you're a bench(bitch). also sorry, i'll shut up k thanks bye",
+    "hey! my kachra self esteem says that to me too!"
+    "jo bolta hai wahi hota hai \n -a 7 year old's VERY EFFECTIVE comeback(ik it doesn't make sense with the shut up-)",
+    "https://www.youtube.com/watch?v=D-UmfqFjpl0",
+    "and to that i say, pa. hapapapa. hathagapapapaa.",
+    "tell ojas to shut up. HE'S THE LOUD ONE!",
+    "you're so mean i won't send you doggo pictures anymore",
+    "UNFRIEND ME"
+]
+
 sorry_sayings = [
+    "https://0jas0jas.github.io/RiskOfRain/",
     "Sorry, man! Don't hate me 'cause I'm beautiful! Get rid of that yee yee ass haircut!!",
     "Nah man, I'll see you at work",
     "OKAY OKAY No need to be so sensitive. GOSH people of these days.",
@@ -130,6 +147,7 @@ text_fields = [
 ]
 no_inputs = len(head_fields)
 no_sorry_sayings = len(sorry_sayings)
+no_sorry_sayings_mahi = len(sorry_sayings_mahi)
 no_rick_roll = len(rick_roll)
 no_time_sayings = len(time_sayings)
 no_subreddits = len(reddit_subreddits)
@@ -216,6 +234,11 @@ async def on_message(message):
     if message.content.startswith('Shut up, Ojas') or message.content.startswith('shut up, ojas') or  message.content.startswith('SHUT UP, OJAS') or message.content.startswith('Shut up ojas') or message.content.startswith('shut up ojas') or message.content.startswith('SHUT UP OJAS'):
         randombleh = random.randrange(0, no_sorry_sayings, 1)
         await message.channel.send(sorry_sayings[randombleh])
+
+    #shut up mahi
+    if message.content.startswith('Shut up, Mahi') or message.content.startswith('shut up, mahi') or  message.content.startswith('SHUT UP, MAHI') or message.content.startswith('Shut up mahi') or message.content.startswith('shut up mahi') or message.content.startswith('SHUT UP MAHI'):
+        randombleh = random.randrange(0, no_sorry_sayings_mahi, 1)
+        await message.channel.send(sorry_sayings_mahi[randombleh])
 
     #We're no strangers to love
     if message.content.startswith("Never gonna") or message.content.startswith("never gonna"):
