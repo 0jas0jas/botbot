@@ -51,7 +51,7 @@ sorry_sayings_mahi = [
     "lalalalala i can't hear you",
     "*insert some cringe but clever comeback*",
     "did you know that you're a bench(bitch). also sorry, i'll shut up k thanks bye",
-    "hey! my kachra self esteem says that to me too!"
+    "hey! my kachra self esteem says that to me too!",
     "jo bolta hai wahi hota hai \n -a 7 year old's VERY EFFECTIVE comeback(ik it doesn't make sense with the shut up-)",
     "https://www.youtube.com/watch?v=D-UmfqFjpl0",
     "and to that i say, pa. hapapapa. hathagapapapaa.",
