@@ -12,6 +12,10 @@ import random
 import praw
 from discord.ext import commands
 from discord.utils import get
+from PyDictionary import PyDictionary
+
+#dictionary
+dictionary=PyDictionary()
 
 #wolframAlpha
 app_id = "8GUU89-YTLG2XLPRR"
@@ -50,7 +54,7 @@ rick_roll = [
 sorry_sayings_mahi = [
     "lalalalala i can't hear you",
     "*insert some cringe but clever comeback*",
-    "did you know that you're a bench(bitch). also sorry, i'll shut up k thanks bye",
+    "did you know that you're a bench (bitch). also sorry, i'll shut up k thanks bye",
     "hey! my kachra self esteem says that to me too!",
     "jo bolta hai wahi hota hai \n -a 7 year old's VERY EFFECTIVE comeback(ik it doesn't make sense with the shut up-)",
     "https://www.youtube.com/watch?v=D-UmfqFjpl0",
@@ -388,6 +392,17 @@ async def on_message(message):
 
         output = ''.join(crooked_message)
         await message.channel.send(output)
+
+    #dictionary
+    if message.content.startswith("Meaning ") or message.content.startswith("meaning "):
+      word = message.content[8:]
+      await message.channel.send(dictionary.meaning(word))
+    if message.content.startswith("Synonyms ") or message.content.startswith("synonyms "):
+      word = message.content[9:]
+      await message.channel.send(dictionary.synonyms(word))
+    if message.content.startswith("Antonyms ") or message.content.startswith("antonyms "):
+      word = message.content[9:]
+      await message.channel.send(dictionary.antonyms(word))
                 
 
 #Token for bot    
