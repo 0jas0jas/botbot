@@ -162,7 +162,7 @@ no_sparrow = len(sparrow)
 
 async def on_ready():
     await client.change_presence(status = discord.Status.idle, activity=discord.Game('"what can I do?"'))
-    print('We have logged in as {0.user}'.format(client))
+    print('HELL YEAH! {0.user} IS ALIVEEEEE'.format(client))
 
 @client.event
 async def on_message(message):
