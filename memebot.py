@@ -226,13 +226,11 @@ async def on_message(message):
     if message.content.startswith('Happy god laptop day') or message.content.startswith('I miss him') or message.content.startswith('happy god laptop day'):
         laptopday = 'https://pbs.twimg.com/media/Esgq9i1VcAEK-4t?format=jpg&name=medium'
         await message.channel.send(laptopday)
-        await message.channel.send('@everyone ')
-
+        
     #happy milk day
     if message.content.startswith('Happy milk day') or message.content.startswith('happy milk day'):
         milkday = 'https://tenor.com/view/martin-luther-king-jr-day-mlk-day-mlk-weekend-martin-luther-king-i-have-a-dream-gif-16077544'
         await message.channel.send(milkday)
-        await message.channel.send('@everyone ')
 
     #shut up ojas
     if message.content.startswith('Shut up, Ojas') or message.content.startswith('shut up, ojas') or  message.content.startswith('SHUT UP, OJAS') or message.content.startswith('Shut up ojas') or message.content.startswith('shut up ojas') or message.content.startswith('SHUT UP OJAS'):
