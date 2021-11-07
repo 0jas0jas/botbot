@@ -401,6 +401,17 @@ async def on_message(message):
     if message.content.startswith("Antonyms ") or message.content.startswith("antonyms "):
       word = message.content[9:]
       await message.channel.send(dictionary.antonyms(word))
+        
+ 
+    #Spacing text
+    if message.content.startswith("spaced "):
+      text = message.content[7: ]
+      arr_text = list(text)
+      spaced_text = ""
+      for letter in arr_text:
+        spaced_text = spaced_text + letter + " "
+      await message.channel.send(spaced_text)  
+      await message.delete()
                 
 
 #Token for bot    
