@@ -1,0 +1,5 @@
+discord.py==1.7.3
+praw==7.5.0
+PyDictionary==2.0.1
+pytz==2021.3
+wolframalpha==5.0.0
