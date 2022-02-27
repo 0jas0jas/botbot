@@ -353,9 +353,9 @@ async def on_message(message):
         await message.channel.send(picture)
 
     #okay.
-    if message.content.startswith("Okay.") or message.content.startswith("okay."):
-        picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
-        await message.channel.send(picture)
+    # if message.content.startswith("Okay.") or message.content.startswith("okay."):
+    #     picture = 'https://tenor.com/view/okay-smile-ok-happy-gif-14150032'
+    #     await message.channel.send(picture)
 
     #Get Some Help
     if message.content.startswith('Get some help') or message.content.startswith('get some help'):
@@ -412,7 +412,32 @@ async def on_message(message):
         spaced_text = spaced_text + letter + " "
       await message.channel.send(spaced_text)  
       await message.delete()
-                
+
+    #wordle
+    if message.content.startswith("wordle "):
+        text = message.content[7: ]
+        boxes = text.split(" ")
+        output = []
+        for box in boxes:
+            if box == "b" or box == "B": output.append(":black_large_square:")
+            if box == "y" or box == "Y": output.append(":yellow_square:")
+            if box == "g" or box == "G": output.append(":green_square:")
+
+        line1 = [output[0], output[1], output[2], output[3], output[4]]
+        line2 = [output[5], output[6], output[7], output[8], output[9]]
+        line3 = [output[10], output[11], output[12], output[13], output[14]]
+        line4 = [output[15], output[16], output[17], output[18], output[19]]
+        line5 = [output[20], output[21], output[22], output[23], output[24]]
+        line6 = [output[25], output[26], output[27], output[28], output[29]]
+
+        await message.channel.send(line1[0] + line1[1] + line1[2] + line1[3] + line1[4])
+        await message.channel.send(line2[0] + line2[1] + line2[2] + line2[3] + line2[4])
+        await message.channel.send(line3[0] + line3[1] + line3[2] + line3[3] + line3[4])
+        await message.channel.send(line4[0] + line4[1] + line4[2] + line4[3] + line4[4])
+        await message.channel.send(line5[0] + line5[1] + line5[2] + line5[3] + line5[4])
+        await message.channel.send(line6[0] + line6[1] + line6[2] + line6[3] + line6[4])
+        await message.delete()
+
 
 #Token for bot    
 client.run('Nzk4OTY0ODc3NzYyODg3NzUy.X_8sBg.o86mF7Ac7XmBWHJXAgLJVwn4sEg')
